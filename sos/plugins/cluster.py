@@ -16,8 +16,11 @@ from sos.plugins import Plugin, RedHatPlugin
 import re
 from glob import glob
 
+
 class cluster(Plugin, RedHatPlugin):
     """cluster suite and GFS related information
+
+    Note: corosync has a separate sos plugin.
     """
 
     optionList = [("gfslockdump", 'gather output of gfs lockdumps', 'slow', False),
