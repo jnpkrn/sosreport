@@ -124,6 +124,7 @@ class cluster(Plugin, RedHatPlugin):
                                   suggest_filename="gfs_lockdump_" + self.mangleCommand(mntpoint))
 
     def postproc(self):
+        # obfuscate passwords for fence devices
         for cluster_conf in glob("/etc/cluster/cluster.conf*"):
-            self.doRegexSub(cluster_conf, r"(\s*\<fencedevice\s*.*\s*passwd\s*=\s*)\S+(\")", r"\1%s" %('"***"'))
-        return
+            self.doRegexSub(cluster_conf, r"(\s*\<fencedevice\s*.*\s*passwd\s*=\s*)\S+(\")",
+                            r"\1%s" % ('"***"'))
