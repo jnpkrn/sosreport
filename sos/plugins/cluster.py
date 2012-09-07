@@ -120,8 +120,8 @@ class cluster(Plugin, RedHatPlugin):
 
     def do_gfslockdump(self):
         for mntpoint in self.doRegexFindAll(r'^\S+\s+([^\s]+)\s+gfs\s+.*$', "/proc/mounts"):
-           self.collectExtOutput("/sbin/gfs_tool lockdump %s" % mntpoint,
-               suggest_filename = "gfs_lockdump_" + self.mangleCommand(mntpoint))
+            self.collectExtOutput("/sbin/gfs_tool lockdump %s" % mntpoint,
+                                  suggest_filename="gfs_lockdump_" + self.mangleCommand(mntpoint))
 
     def postproc(self):
         for cluster_conf in glob("/etc/cluster/cluster.conf*"):
